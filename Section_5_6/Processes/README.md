@@ -117,3 +117,55 @@ After completing these programs, you will understand:
 * How `wait()` synchronizes parent and child processes
 * How to wait for multiple child processes
 * How `errno` and `ECHILD` are used to detect that all child processes have terminated
+
+
+### 5. Anonymous Pipe Communication
+
+**File:** `pipe_basic.c`
+
+Demonstrates one-way Inter-Process Communication (IPC) between a parent and child process using an anonymous pipe. The child writes an integer to the pipe, and the parent reads it, processes the value, and prints the result.
+
+**Concepts Covered**
+
+- `pipe()`
+- Anonymous pipes
+- Inter-Process Communication (IPC)
+- `fork()`
+- `read()`
+- `write()`
+- `close()`
+- Parent-child communication
+- File descriptors (`fd[0]` and `fd[1]`)
+- Error handling with system calls
+
+---
+
+## System Calls Used
+
+- `fork()`
+- `wait()`
+- `getpid()`
+- `getppid()`
+- `sleep()`
+- `fflush()`
+- `pipe()`
+- `read()`
+- `write()`
+- `close()`
+
+---
+
+## Learning Outcomes
+
+After completing these programs, you will understand:
+
+- How Linux creates new processes using `fork()`
+- Difference between parent and child processes
+- How process IDs (PID and PPID) work
+- Why process execution order changes on different runs
+- How `wait()` synchronizes parent and child processes
+- How to wait for multiple child processes
+- How `errno` and `ECHILD` are used to detect that all child processes have terminated
+- How anonymous pipes enable one-way communication between related processes
+- How `read()` and `write()` transfer data through a pipe
+- Why unused pipe ends should be closed to avoid resource leaks and blocking
