@@ -169,3 +169,59 @@ After completing these programs, you will understand:
 - How anonymous pipes enable one-way communication between related processes
 - How `read()` and `write()` transfer data through a pipe
 - Why unused pipe ends should be closed to avoid resource leaks and blocking
+
+
+### 6. Parallel Array Sum using `fork()` and `pipe()`
+
+**File:** `parallel_array_sum.c`
+
+Demonstrates how a parent and child process can divide a computational task using `fork()`. Each process calculates the sum of half of an integer array. The child sends its partial sum to the parent through an anonymous pipe, and the parent combines both partial sums to compute the final result.
+
+**Concepts Covered**
+
+- `fork()`
+- `pipe()`
+- Anonymous pipes
+- Inter-Process Communication (IPC)
+- `read()`
+- `write()`
+- `close()`
+- `wait()`
+- Parent-child communication
+- Parallel task division
+- Partial sum computation
+- Combining results from multiple processes
+
+---
+
+## System Calls Used
+
+- `fork()`
+- `wait()`
+- `getpid()`
+- `getppid()`
+- `sleep()`
+- `fflush()`
+- `pipe()`
+- `read()`
+- `write()`
+- `close()`
+
+---
+
+## Learning Outcomes
+
+After completing these programs, you will understand:
+
+- How Linux creates new processes using `fork()`
+- Difference between parent and child processes
+- How process IDs (PID and PPID) work
+- Why process execution order changes on different runs
+- How `wait()` synchronizes parent and child processes
+- How to wait for multiple child processes
+- How `errno` and `ECHILD` are used to detect that all child processes have terminated
+- How anonymous pipes enable one-way communication between related processes
+- How `read()` and `write()` transfer data through a pipe
+- Why unused pipe ends should be closed to avoid resource leaks and blocking
+- How to divide a computation between multiple processes
+- How IPC can be used to combine partial results into a final output
