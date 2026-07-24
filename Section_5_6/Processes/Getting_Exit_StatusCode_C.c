@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <wait.h>
+#include <errno.h>
 
 int main(int argc, char *argv[])
 {
@@ -16,25 +17,31 @@ int main(int argc, char *argv[])
     if (pid == 0)
     {
         // child process
-
-        execlp("ping", "ping", "-c", "3", "google.con",NULL);
+        int err = execlp("ping", "ping", "-c", "3", "google.com", NULL);
+        if (err == -1)
+        {
+            printf("Could not find the program to execute\n");
+            return 2;
+        }
     }
     else
     {
         int wstatus;
         // parent process
         wait(&wstatus);
-        if(WIFEXITED(wstatus)){
-            int statusCode= WEXITSTATUS(wstatus);
-            if(statusCode==0){
+        if (WIFEXITED(wstatus))
+        {
+            int statusCode = WEXITSTATUS(wstatus);
+            if (statusCode == 0)
+            {
 
-                printf("Sucess!!!!!\n");
-            }else {
-                printf("FAILURE with statusCode %d\n",statusCode);
+                printf("Success!!!!!\n");
+            }
+            else
+            {
+                printf("FAILURE with statusCode %d\n", statusCode);
             }
         }
-
-        
     }
 
     return 0;
