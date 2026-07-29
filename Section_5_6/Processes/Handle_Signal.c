@@ -25,7 +25,7 @@ int main(int argv, char* argc[]) {
 
     for (int i = 1; i <= 10; i++) {
         printf("The number is: %d\n", i);
-        sleep(1);
+        sleep(2);
     }
     return 0;
 }
