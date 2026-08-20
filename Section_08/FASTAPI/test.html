@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>CORS Test</h2>
+
+    <button onclick="testCORS()">Test API</button>
+
+    <script>
+        async function testCORS() {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/");
+                const data = await response.json();
+
+                console.log("SUCCESS:", data);
+            } catch (error) {
+                console.log("CORS ERROR:", error);
+            }
+        }
+    </script>
+</body>
+</html>
