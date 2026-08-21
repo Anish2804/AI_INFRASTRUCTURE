@@ -1,4 +1,4 @@
-FastAPI Mastery --- Complete Course & Revision Notes
+FastAPI Mastery — Complete Course & Revision Notes
 
 A complete revision-first README covering the full 31-topic FastAPI
 course, from APIs and routing to PostgreSQL, authentication, testing,
@@ -67,6 +67,8 @@ Rate Limiting
 Deployment on Render
 
 Capstone --- PostgreSQL Blog API
+
+Topics
 
 1. Introduction to APIs & Backend Development
 
