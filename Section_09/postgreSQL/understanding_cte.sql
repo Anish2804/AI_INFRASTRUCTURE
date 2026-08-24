@@ -25,3 +25,7 @@ SELECT
 FROM employee e 
 JOIN max_sal m ON e.dept=m.dept 
 WHERE e.salary = m.max_salary;
+
+
+-- Points:
+-- Once CTE has been created it can only be used once. It will not be persisted.
