@@ -1,0 +1,8 @@
+FROM python
+
+WORKDIR /main
+
+COPY ./main.py .
+COPY ./servers.txt .
+
+CMD ["python3", "main.py"]
