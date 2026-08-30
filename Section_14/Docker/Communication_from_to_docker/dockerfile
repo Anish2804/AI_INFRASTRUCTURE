@@ -1,0 +1,21 @@
+# FROM python
+
+# WORKDIR /myapp
+
+# COPY ./local_db_communication.py .
+
+# RUN pip install psycopg2-binary
+
+# CMD ["python", "local_db_communication.py"]
+
+
+# communication_b/w_container
+FROM python
+
+WORKDIR /myapp
+
+COPY ./container_to_container.py .
+
+RUN pip install psycopg2-binary
+
+CMD ["python3", "container_to_container.py"]
