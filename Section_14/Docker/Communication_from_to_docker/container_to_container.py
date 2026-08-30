@@ -1,4 +1,12 @@
-import psycopg2
+import importlib.util
+
+# Check whether the PostgreSQL driver is installed before attempting to use it.
+if importlib.util.find_spec("psycopg2") is None:
+    raise ModuleNotFoundError(
+        "psycopg2 is not installed. Install it with: pip install psycopg2-binary"
+    )
+
+import psycopg2  # type: ignore[import-not-found]
 
 
 # Function to create a connection to the PostgreSQL database
