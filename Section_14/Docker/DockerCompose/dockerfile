@@ -1,0 +1,21 @@
+# FROM python
+
+# WORKDIR /myapp
+
+# COPY ./demp.py .
+
+# RUN pip install psycopg2-binary
+
+# CMD ["python3", "demp.py"]
+
+
+FROM python
+
+WORKDIR /myapp
+
+COPY ./demp.py .
+COPY ./volume_demo.py .
+
+RUN pip install psycopg2-binary
+
+CMD ["python", "demp.py"]

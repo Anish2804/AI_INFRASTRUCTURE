@@ -1,9 +1,39 @@
 services:
-  mysqldb:
-    image: mysql:latest
+  postgresdb:
+    image: postgres:latest
 
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=userinfo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=userinfo
 
-    container_name: mysqldb
+    container_name: mypostgresdb
+
+    networks:
+      - my-network
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d userinfo"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: pythonapp
+
+    networks:
+      - my-network
+
+    volumes:
+      - ./server.txt:/myapp/server.txt
+
+    depends_on:
+      postgresdb:
+        condition: service_healthy
+
+    stdin_open: true
+    tty: true
+
+networks:
+  my-network:
