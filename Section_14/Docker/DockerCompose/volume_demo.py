@@ -1,5 +1,5 @@
 try:
-    import psycopg2
+    import psycopg2  # type: ignore[import-not-found]
 except ModuleNotFoundError as exc:
     raise RuntimeError(
         "psycopg2 is required. Install it with: pip install psycopg2-binary"
