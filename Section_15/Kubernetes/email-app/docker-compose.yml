@@ -1,0 +1,31 @@
+services:
+
+  db:
+    image: postgres:16
+    container_name: email-postgres
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: emaildb
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+  app:
+    image: anishsdocker/email-app:latest
+    container_name: email-app
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - db
+
+
+volumes:
+  postgres_data:
