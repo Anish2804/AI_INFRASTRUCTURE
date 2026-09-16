@@ -850,3 +850,176 @@ Available lower-cost capacity ka use karne wala option.
 * Instance types → **General / Compute / Memory / GPU**.
 * Purchasing → **On-Demand / Reserved / Spot**.
 * Practice ke baad unnecessary instance **Terminate** karein to avoid unnecessary cost.
+
+
+
+
+
+
+# AWS EBS — Elastic Block Store
+
+## 1. EBS kya hai?
+
+**EBS (Elastic Block Store)** AWS ki **cloud-based storage service** hai jo EC2 instances ke saath attach hoti hai.
+
+Ye ek **virtual hard drive** ki tarah kaam karti hai.
+
+* EC2 ke saath attach/detach kar sakte hain.
+* Dusre EC2 instance ke saath bhi attach kiya ja sakta hai.
+* Data safety aur high performance ke liye useful hai.
+* Database hosting jaise use cases mein use ho sakta hai.
+
+---
+
+## 2. EBS ke Key Points
+
+### Region & Availability Zone Specific
+
+EBS volume usi **Availability Zone (AZ)** mein create hota hai jahan EC2 instance hai.
+
+> EBS ko EC2 ke same AZ mein hona chahiye.
+
+---
+
+### Delete on Termination
+
+EC2 instance terminate hone par EBS volume delete hoga ya nahi, ye **Delete on Termination** configuration se decide hota hai.
+
+> Instance terminate karne se pehle is setting ko check karein, warna important data lose ho sakta hai.
+
+---
+
+### EBS Volume Types
+
+Different volume types available hote hain, jaise:
+
+* **GP3 (General Purpose)**
+* **IOPS**
+
+Volume ko required **performance aur cost** ke according choose kiya jaata hai.
+
+---
+
+# 3. EBS Create & Attach
+
+AWS Console se:
+
+```text
+Create EBS Volume
+       ↓
+Select configuration
+       ↓
+Create Volume
+       ↓
+Attach to EC2
+```
+
+---
+
+# 4. EBS Resize
+
+EBS volume ka **size increase** kiya ja sakta hai bina EC2 instance ko stop kiye.
+
+---
+
+# 5. EBS ko Linux mein Mount Karna
+
+New storage ko Linux system mein access karne ke liye commands use hoti hain:
+
+```bash
+lsblk
+```
+
+Storage devices ko check karne ke liye.
+
+```bash
+mkfs
+```
+
+File system create/prepare karne ke liye.
+
+```bash
+mount
+```
+
+Storage ko system ke required location par mount karne ke liye.
+
+### UUID Conflict
+
+Agar UUID conflict ho toh:
+
+```bash
+mount -o nouuid
+```
+
+use kiya ja sakta hai.
+
+---
+
+# 6. EBS Snapshots
+
+**Snapshot** EBS volume ka **backup** hota hai.
+
+Agar EBS volume corrupt ho jaaye, toh snapshot se data recover karne mein help mil sakti hai.
+
+```text
+EBS Volume
+    ↓
+ Snapshot
+    ↓
+Backup / Recovery
+```
+
+### Cross-Region / Cross-AZ
+
+Snapshot ko **different Region/AZ** mein copy karke wahan new EBS volume create kiya ja sakta hai.
+
+---
+
+# 7. Security & Management
+
+### Encryption
+
+EBS data ko encrypt kiya ja sakta hai.
+
+AWS **KMS (Key Management Service)** ka use encryption ke liye hota hai.
+
+### Lifecycle Manager
+
+Backups ko automate karne ke liye policies set kar sakte hain.
+
+Example:
+
+```text
+Daily Backup
+Weekly Backup
+```
+
+### Recycle Bin
+
+Accidentally delete hue **snapshots** ko recover karne ka option provide karta hai.
+
+---
+
+# Quick Revision
+
+* **EBS** → EC2 ke liye cloud-based storage.
+* EBS → **Virtual Hard Drive** ki tarah.
+* EBS → EC2 ke saath **attach/detach** ho sakta hai.
+* EBS → **AZ-specific**.
+* **Delete on Termination** → EC2 terminate hone par volume delete hoga ya nahi.
+* Volume types → **GP3, IOPS etc.**
+* Resize → Volume ka size increase kar sakte hain without stopping instance.
+* Linux commands → `lsblk`, `mkfs`, `mount`
+* UUID conflict → `mount -o nouuid`
+* **Snapshot** → EBS backup.
+* Snapshot → Different AZ/Region mein copy karke new volume create kar sakte hain.
+* **KMS** → Encryption.
+* **Lifecycle Manager** → Automated backups.
+* **Recycle Bin** → Deleted snapshots recover karne ka option.
+
+
+
+
+
+
