@@ -666,3 +666,187 @@ jaise settings configure karein.
 * `aws configure` → CLI configuration.
 * **Access Keys** → CLI access ke liye.
 * Best practices → **Avoid Root + MFA + Audit + No Sharing + Password Policy**.
+
+
+
+
+
+# AWS EC2 — Elastic Compute Cloud
+
+## 1. EC2 kya hai?
+
+**EC2 (Elastic Compute Cloud)** AWS ki ek cloud service hai jo **virtual servers** provide karti hai.
+
+Isse:
+
+* Physical server kharidne ki need kam hoti hai
+* Server ko laptop ki tarah manage kar sakte hain
+* Applications/websites host kar sakte hain
+
+---
+
+## 2. EC2 Instance Launch Karna
+
+Basic steps:
+
+1. AWS Console par sign up/login karein.
+2. **Region** select karein.
+3. Instance ka **Name** set karein.
+4. **AMI (OS Image)** select karein.
+5. Free Tier ke liye suitable instance type select karein, jaise `t2.micro` / `t3.micro`.
+6. **Key Pair** create/download karein.
+7. Zarurat ho toh **User Data** mein startup script add karein.
+
+### Key Pair
+
+Server access ke liye key pair use hota hai.
+
+Example:
+
+```text
+Key Pair
+   ↓
+.pem file
+   ↓
+EC2 Server Access
+```
+
+### User Data
+
+Instance startup ke time automation scripts run karne ke liye use kar sakte hain.
+
+Example: Apache server automatically install karna.
+
+---
+
+# 3. Security Groups
+
+**Security Group** EC2 instance ke liye ek **firewall** ki tarah kaam karta hai.
+
+### Inbound Rules
+
+Bahar se EC2 server par aane wale traffic ko control karta hai.
+
+Examples:
+
+* **Port 80** → HTTP
+* **Port 22** → SSH
+
+### Outbound Rules
+
+EC2 server se bahar jaane wale traffic ko control karta hai.
+
+```text
+Internet
+   ↓
+Inbound Rules
+   ↓
+Security Group
+   ↓
+EC2
+   ↓
+Outbound Rules
+   ↓
+Internet
+```
+
+Security Groups:
+
+* Region-specific hote hain
+* Baad mein modify kiye ja sakte hain
+
+---
+
+# 4. EC2 se Connect Kaise Karein?
+
+### EC2 Instance Connect
+
+Browser ke through directly EC2 instance se connect kar sakte hain.
+
+### Windows
+
+**PuTTY** use kar sakte hain.
+
+`.pem` key ko `.ppk` format mein convert karke use kiya ja sakta hai.
+
+### Mac/Linux
+
+Terminal se SSH ke through connect kar sakte hain.
+
+```bash
+ssh -i <key-file> <user>@<public-ip>
+```
+
+---
+
+# 5. Instance Types
+
+Instance type workload ke according choose kiya jaata hai.
+
+Main categories:
+
+* **General Purpose**
+* **Compute Optimized**
+* **Memory Optimized**
+* **GPU**
+
+---
+
+# 6. EC2 Billing & Monitoring
+
+Unnecessary cost avoid karne ke liye billing aur instances ko monitor karna important hai.
+
+Useful areas:
+
+* **Billing Dashboard**
+* **EC2 Global View**
+
+### Important
+
+Practice complete hone ke baad unnecessary running instance ko **Terminate** karna yaad rakhein.
+
+```text
+Practice Complete
+       ↓
+Check EC2
+       ↓
+Terminate unnecessary instance
+       ↓
+Avoid unnecessary cost
+```
+
+---
+
+# 7. EC2 Purchasing Options
+
+### On-Demand
+
+Testing/short-term usage ke liye.
+
+### Reserved
+
+Long-term usage ke liye.
+
+### Spot
+
+Available lower-cost capacity ka use karne wala option.
+
+---
+
+# Quick Revision
+
+* **EC2** → AWS ki virtual server service.
+* Physical server ka **cost-effective alternative**.
+* **Region** → EC2 region-specific hai.
+* **AMI** → OS image select karne ke liye.
+* **Key Pair** → EC2 server access ke liye.
+* **User Data** → Startup automation scripts.
+* **Security Group** → EC2 ka firewall.
+* **Inbound** → Server mein incoming traffic.
+* **Outbound** → Server se outgoing traffic.
+* Port **80** → HTTP.
+* Port **22** → SSH.
+* Connection → **EC2 Instance Connect / PuTTY / SSH**.
+* Instance types → **General / Compute / Memory / GPU**.
+* Purchasing → **On-Demand / Reserved / Spot**.
+* Practice ke baad unnecessary instance **Terminate** karein to avoid unnecessary cost.
