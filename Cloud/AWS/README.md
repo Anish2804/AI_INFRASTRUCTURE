@@ -461,3 +461,208 @@ AWS seekhne ke baad different roles mein ja sakte hain, jaise:
 
 
 
+# AWS IAM — Identity and Access Management
+
+## 1. IAM kya hai?
+
+**IAM (Identity and Access Management)** AWS ki ek **free** aur **Global service** hai.
+
+Iska use:
+
+* AWS resources ko secure karne
+* Users create karne
+* Users ko permissions dene
+
+ke liye hota hai.
+
+---
+
+## 2. Root User
+
+AWS account create karte hi ek **Root User** create hota hai.
+
+Root User ke paas **all rights/permissions** hote hain.
+
+### Best Practice
+
+> Root User ko daily tasks ke liye use nahi karna chahiye, kyunki ye security risk ho sakta hai.
+
+---
+
+## 3. IAM Users
+
+Team members ke liye **individual IAM Users** create karne chahiye.
+
+```text
+AWS Account
+   ↓
+IAM Users
+   ├── User 1
+   ├── User 2
+   └── User 3
+```
+
+Har team member ko separate user diya ja sakta hai.
+
+---
+
+## 4. IAM Groups
+
+Agar multiple users same team mein hain, toh unhe ek **Group** mein add karke group ko permissions di ja sakti hain.
+
+Example:
+
+```text
+Operations Team
+       ↓
+   IAM Group
+   ├── User 1
+   ├── User 2
+   ├── User 3
+   └── User 4
+```
+
+### Benefit
+
+Individual users ko separately permissions dene ke bajaye **group level par permissions manage** karna easy hota hai.
+
+---
+
+## 5. IAM Policies
+
+**Policies** permissions define karti hain.
+
+IAM policies generally **JSON format** mein hoti hain.
+
+Policies:
+
+* Visual UI se create ki ja sakti hain
+* JSON code ke through custom policy bhi banayi ja sakti hai
+
+```text
+User / Group
+     ↓
+   Policy
+     ↓
+Permissions
+```
+
+---
+
+## 6. MFA — Multi-Factor Authentication
+
+**MFA** security ki ek extra layer provide karta hai.
+
+MFA enable hone ke baad login ke liye:
+
+```text
+Password
+   +
+Authentication Code
+   ↓
+Access
+```
+
+Authentication code authenticator app se aa sakta hai.
+
+### Best Practice
+
+**Root User par MFA enable karna chahiye.**
+
+---
+
+# 7. AWS Services Access Karne ke Ways
+
+AWS services ko mainly 3 ways se access kar sakte hain:
+
+### 1. Management Console
+
+* GUI-based dashboard
+* Browser se AWS services manage kar sakte hain
+
+### 2. AWS CLI
+
+**Command Line Interface**
+
+* Commands ke through AWS services access/manage kar sakte hain
+* Automation ke liye useful
+* Windows/Mac par install kiya ja sakta hai
+
+### 3. SDKs & APIs
+
+Code/programs ke through AWS services access karne ke liye use hote hain.
+
+```text
+AWS Access
+│
+├── Management Console → GUI
+├── AWS CLI → Commands / Automation
+└── SDKs & APIs → Code
+```
+
+---
+
+# 8. AWS CLI Configuration
+
+CLI use karne ke liye **Access Keys** generate karni hoti hain.
+
+Ye IAM User ke **Security Credentials** section se generate ki ja sakti hain.
+
+### Configure CLI
+
+```bash
+aws configure
+```
+
+Is command ke through configure kiya jaata hai:
+
+* Access Key
+* Secret Key
+* Region
+
+---
+
+# 9. IAM Best Practices
+
+### Avoid Root Account
+
+Root User ko mainly **initial setup** ke liye use karein.
+
+### Enable MFA
+
+Root User ke liye MFA enable karna best practice hai.
+
+### Audit Users & Permissions
+
+**Credential Report** download karke check kar sakte hain ki users ke paas kya permissions/credentials hain.
+
+### No Sharing
+
+**Password aur Access Keys kabhi share nahi karni chahiye.**
+
+### Password Policy
+
+Password ki:
+
+* Complexity
+* Expiration
+
+jaise settings configure karein.
+
+---
+
+# Quick Revision
+
+* **IAM** → Identity and Access Management.
+* IAM → **Free + Global service**.
+* IAM → Users, permissions aur AWS resources ki security manage karne ke liye.
+* **Root User** → Account ka default user, all rights.
+* Root User → Daily tasks ke liye use nahi karna.
+* **User** → Individual team member.
+* **Group** → Multiple users ko collectively manage karna.
+* **Policy** → Permissions define karti hai; JSON format.
+* **MFA** → Password + authentication code.
+* AWS access → **Console + CLI + SDKs/APIs**.
+* `aws configure` → CLI configuration.
+* **Access Keys** → CLI access ke liye.
+* Best practices → **Avoid Root + MFA + Audit + No Sharing + Password Policy**.
