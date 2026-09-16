@@ -1023,3 +1023,163 @@ Accidentally delete hue **snapshots** ko recover karne ka option provide karta h
 
 
 
+# AWS AMI — Amazon Machine Image
+
+## 1. AMI kya hai?
+
+**AMI (Amazon Machine Image)** ek **pre-configured template** hai jisme pehle se:
+
+* Operating System
+* Software
+* Configurations
+
+set ho sakte hain.
+
+AMI ka use karke same configuration ke saath multiple **EC2 instances** launch kar sakte hain.
+
+### Main Benefit
+
+> Baar-baar same setup manually karne ki need nahi hoti, isliye time save hota hai aur configuration consistent rehti hai.
+
+---
+
+# 2. AMI Create Karna
+
+Existing EC2 instance se AMI create kar sakte hain.
+
+Path:
+
+```text
+EC2 Instance
+    ↓
+Actions
+    ↓
+Image and templates
+    ↓
+Create image
+```
+
+Isse current instance ki configuration ka ek **image/template** create ho jaata hai.
+
+---
+
+# 3. AMI se EC2 Instance Launch Karna
+
+Saved AMI ko select karke:
+
+```text
+AMI
+ ↓
+Launch instance from AMI
+ ↓
+New EC2 Instance
+```
+
+Naya EC2 instance same saved configuration ke saath launch kiya ja sakta hai.
+
+---
+
+# 4. Types of AMI
+
+### 1. Public / Quick Start AMI
+
+AWS dwara provide ki gayi basic **OS images**.
+
+---
+
+### 2. Private AMI
+
+Khud banayi hui **customized AMI**.
+
+Ye aapke account/team ke use ke liye ho sakti hai.
+
+---
+
+### 3. Paid / Marketplace AMI
+
+Third-party organizations dwara provide ki gayi pre-configured images.
+
+Complex software stacks pehle se configured ho sakte hain.
+
+**Example:** LAMP stack
+
+---
+
+# 5. Launch Templates
+
+Agar baar-baar same configuration ke EC2 instances launch karne hain, toh **Launch Template** use kar sakte hain.
+
+Isme instance ki settings save ki ja sakti hain, jaise:
+
+* Instance Type
+* Security Groups
+* Network Settings
+
+```text
+Launch Template
+      ↓
+Saved Configuration
+      ↓
+Multiple EC2 Instances
+```
+
+### AMI vs Launch Template
+
+**AMI** → Machine ke OS/software/configuration ka template.
+
+**Launch Template** → EC2 launch karne ki configuration/settings ka template.
+
+---
+
+# 6. AMI mein kya Clone hota hai?
+
+AMI create karne par instance ki configured environment ko reuse kiya ja sakta hai.
+
+Lecture ke according, isme include ho sakte hain:
+
+* Installed Applications
+* Environment Variables
+* Network Configuration
+* Users
+
+---
+
+# 7. EC2 Image Builder
+
+**EC2 Image Builder** AMI creation process ko automate karne ke liye use hota hai.
+
+Ye pipeline ke through:
+
+```text
+Build
+ ↓
+Test
+ ↓
+Deploy
+```
+
+process automate kar sakta hai.
+
+Production environments mein useful hai kyunki **error checking aur security validation** bhi process ka part ho sakte hain.
+
+---
+
+# Quick Revision
+
+* **AMI** → Pre-configured template for EC2.
+* AMI mein → **OS + Software + Configuration**.
+* Benefit → **Consistency + Time Saving**.
+* Existing EC2 → **Actions → Image and templates → Create image**.
+* AMI se same configuration ke saath new EC2 launch kar sakte hain.
+* **Public AMI** → AWS-provided basic OS images.
+* **Private AMI** → Custom AMI.
+* **Marketplace AMI** → Third-party pre-configured images.
+* **Launch Template** → EC2 launch configuration save karta hai.
+* Launch Template → Instance type + Security Group + Network settings etc.
+* **EC2 Image Builder** → AMI build, test aur deployment automate karta hai.
+
+
+
+
+
+
