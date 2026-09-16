@@ -1182,4 +1182,232 @@ Production environments mein useful hai kyunki **error checking aur security val
 
 
 
+# AWS ELB & Auto Scaling Groups (ASG)
+
+## 1. Scalability
+
+Jab application par traffic increase hota hai, toh resources ko scale karna padta hai.
+
+### Vertical Scaling — Scaling Up
+
+Existing instance ka **type/size increase** karna.
+
+Example:
+
+```text id="v3p9cx"
+t2.micro
+   ↓
+m5.large
+```
+
+Isse ek instance ki computing power increase hoti hai.
+
+### Horizontal Scaling — Scaling Out
+
+Ek instance ke instead **multiple instances add** karna.
+
+```text id="0b6v8p"
+1 Instance
+    ↓
+Multiple Instances
+```
+
+---
+
+# 2. High Availability (HA)
+
+**High Availability** ka matlab hai application/service ko available rakhna even if ek data center ya zone down ho jaaye.
+
+Iske liye **Multi-AZ setup** use kiya ja sakta hai.
+
+---
+
+# 3. Elastic Load Balancing (ELB)
+
+**Load Balancer** ek front-facing server ki tarah kaam karta hai.
+
+User ki requests ko multiple EC2 instances ke beech distribute karta hai.
+
+```text id="1n5qf2"
+             Users
+                ↓
+          Load Balancer
+           ↙         ↘
+       EC2-1        EC2-2
+```
+
+### Benefits
+
+* Traffic distribution
+* Load balancing
+* Fault Tolerance
+
+Agar ek server down ho jaaye, toh traffic doosre available server ko bheja ja sakta hai.
+
+---
+
+# 4. Target Group
+
+**Target Group** decide karta hai ki Load Balancer requests ko **kahan forward karega**.
+
+Example:
+
+```text id="l2gq7m"
+Load Balancer
+      ↓
+ Target Group
+    ↙     ↘
+ EC2-1   EC2-2
+```
+
+### ELB Access
+
+Load Balancer ka **DNS name** use karke application/website access ki ja sakti hai.
+
+Agar ek instance unhealthy/down ho jaaye, toh Load Balancer **healthy instance** par traffic bhejta hai.
+
+---
+
+# 5. Auto Scaling Group (ASG)
+
+**ASG (Auto Scaling Group)** demand ke according EC2 instances ko automatically **add ya remove** karta hai.
+
+```text id="m4g5tj"
+High Traffic
+    ↓
+More Instances
+
+Low Traffic
+    ↓
+Fewer Instances
+```
+
+### Benefits
+
+#### Cost Efficiency
+
+Traffic kam hone par unnecessary instances remove kiye ja sakte hain.
+
+#### High Availability
+
+Agar koi instance terminate ho jaaye, toh ASG automatically **new instance launch** kar sakta hai.
+
+---
+
+# 6. ASG ka Practical Flow
+
+ASG setup ke liye lecture mein flow:
+
+```text id="j4s8kl"
+AMI
+ ↓
+Launch Template
+ ↓
+Auto Scaling Group
+ ↓
+EC2 Instances
+```
+
+### AMI
+
+Instance ki **blueprint/copy**.
+
+### Launch Template
+
+Instance launch karne ki configuration save karta hai.
+
+### ASG
+
+Launch Template ka use karke required number of instances maintain karta hai.
+
+---
+
+# 7. Desired Capacity
+
+ASG ek **Desired Capacity** maintain karta hai.
+
+Example:
+
+```text id="f3j2kd"
+Desired Capacity = 2
+
+EC2-1
+EC2-2
+```
+
+Agar manually ek instance terminate kar diya:
+
+```text id="w8r1hs"
+2 Instances
+    ↓
+1 Instance
+    ↓
+ASG detects difference
+    ↓
+New Instance Launch
+    ↓
+2 Instances
+```
+
+ASG ka goal desired capacity maintain karna hai.
+
+---
+
+# 8. ELB + ASG Together
+
+Dono ka role different hai:
+
+```text id="c9x4az"
+                 Users
+                   ↓
+                  ELB
+                   ↓
+             Target Group
+              ↙        ↘
+           EC2-1      EC2-2
+              ↑          ↑
+              └──── ASG ─┘
+                    ↓
+          Add / Remove Instances
+```
+
+* **ELB** → Traffic distribute karta hai.
+* **ASG** → Instances ki required count maintain karta hai.
+* **AMI** → Instance ki blueprint provide karta hai.
+* **Launch Template** → Instance launch configuration provide karta hai.
+
+---
+
+# 9. Clean-up
+
+Practice complete hone ke baad unnecessary resources delete/terminate karein:
+
+* Auto Scaling Group
+* Load Balancer
+* EC2 Instances
+
+> Cleanup important hai taaki unnecessary AWS billing na ho.
+
+---
+
+# Quick Revision
+
+* **Vertical Scaling** → Existing instance ko bigger/powerful banana.
+* **Horizontal Scaling** → More instances add karna.
+* **High Availability** → Service ko available rakhna even when failure occurs.
+* **ELB** → User traffic ko multiple instances mein distribute karta hai.
+* **Target Group** → ELB traffic ko target instances tak forward karta hai.
+* **ELB DNS** → Application access karne ke liye use ho sakta hai.
+* **ASG** → EC2 instances automatically add/remove karta hai.
+* **Desired Capacity** → Required number of instances.
+* Instance terminate hone par ASG → **Replacement instance launch** kar sakta hai.
+* **AMI → Launch Template → ASG → EC2 Instances**
+* **ELB = Traffic manage**
+* **ASG = Instance count manage**
+
+
+
+
+
+
 
