@@ -307,3 +307,157 @@ Cloud providers multiple types ki services provide karte hain, jaise:
 * **Private Cloud** → Dedicated to one organization.
 * **Hybrid Cloud** → Public + Private.
 * Cloud services → Servers, Storage, Database, ML, Monitoring, Networking etc.
+
+
+
+
+
+# Amazon Web Services (AWS) — Overview
+
+## 1. AWS kya hai?
+
+**AWS (Amazon Web Services)** ek **Cloud Computing Service Provider** hai.
+
+Ye cloud ke through different IT services aur infrastructure provide karta hai.
+
+---
+
+## 2. AWS History & Growth
+
+* **2006** mein AWS launch hua.
+* Initially mainly:
+
+  * **S3** → Storage
+  * **EC2** → Compute
+* Aaj AWS mein **200+ fully-featured services** available hain, including AI, ML, IoT etc.
+
+---
+
+## 3. AWS Popular kyun hai?
+
+AWS ke 4 main pillars:
+
+### Scalability
+
+Requirement ke according resources ko **increase ya decrease** kar sakte hain.
+
+### Global Reach
+
+AWS ke servers/infrastructure duniya ke different regions mein available hain.
+
+### Reliability
+
+AWS ek mature aur widely used cloud platform hai.
+
+### Security
+
+AWS high-level security standards provide karta hai.
+
+---
+
+## 4. AWS Market Share
+
+**2024 report** ke according AWS ka approximately **32% cloud market share** tha.
+
+---
+
+## 5. Popular AWS Services
+
+| Service        | Use                  |
+| -------------- | -------------------- |
+| **EC2**        | Computing            |
+| **S3**         | Storage              |
+| **RDS**        | Database             |
+| **Lambda**     | Serverless Computing |
+| **CloudFront** | Content Delivery     |
+
+---
+
+## 6. AWS Infrastructure
+
+### Region
+
+AWS ka infrastructure different **Regions** mein distributed hota hai.
+
+### Availability Zone (AZ)
+
+Ek Region ke andar multiple **Availability Zones** hote hain.
+
+AZs ka purpose ye hai ki agar ek data center/AZ mein failure ho, toh doosra available reh sake.
+
+```text
+Region
+│
+├── Availability Zone 1
+│
+├── Availability Zone 2
+│
+└── Availability Zone 3
+```
+
+Isse **Single Point of Failure** se bachne mein help milti hai.
+
+### AWS Infrastructure Numbers
+
+Video ke according:
+
+* **34 Regions**
+* **108 Availability Zones**
+
+### Local Zones
+
+**Local Zones** ultra-low latency ke liye use hote hain.
+
+---
+
+## 7. AWS Pricing
+
+### Pricing Calculator
+
+AWS ka **Pricing Calculator** use karke services ka cost pehle se estimate kiya ja sakta hai.
+
+### Free Tier
+
+Beginners/students ke liye AWS limited resources free provide karta hai.
+
+Video mein example:
+
+* **750 hours EC2**
+
+> Free Tier ke exact limits/time-period ko use karne se pehle current AWS terms check karna chahiye.
+
+---
+
+## 8. Career Opportunities
+
+AWS seekhne ke baad different roles mein ja sakte hain, jaise:
+
+* Cloud Architect
+* DevOps Engineer
+* Data Engineer
+* Solutions Architect
+
+---
+
+# Quick Revision
+
+* **AWS** → Cloud Computing Service Provider.
+* AWS launched → **2006**
+* Initial services → **S3 + EC2**
+* AWS → **200+ services**
+* 4 pillars → **Scalability + Global Reach + Reliability + Security**
+* **EC2** → Compute
+* **S3** → Storage
+* **RDS** → Database
+* **Lambda** → Serverless
+* **CloudFront** → Content Delivery
+* **Region** → AWS infrastructure ka geographical area.
+* **AZ** → Region ke andar isolated infrastructure location.
+* Multiple AZs → Failure/Single Point of Failure se protection.
+* **Local Zones** → Ultra-low latency.
+* **Pricing Calculator** → Cost estimate.
+* AWS career roles → Cloud Architect, DevOps Engineer, Data Engineer, Solutions Architect.
+
+
+
+
