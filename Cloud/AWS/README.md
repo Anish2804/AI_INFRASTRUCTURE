@@ -1409,5 +1409,224 @@ Practice complete hone ke baad unnecessary resources delete/terminate karein:
 
 
 
+# AWS S3 — Simple Storage Service
+
+## 1. S3 Basics
+
+**S3 (Simple Storage Service)** AWS ki object storage service hai.
+
+### Bucket
+
+**Bucket** S3 mein data store karne ka container hota hai.
+
+> Bucket ka name **globally unique** hona chahiye.
+
+### Object
+
+S3 mein upload ki gayi files ko **Objects** kehte hain.
+
+Data **Key-Value** concept ke through store hota hai.
+
+```text id="s3basic"
+Bucket
+  ↓
+Objects
+  ├── file1
+  ├── image.jpg
+  └── video.mp4
+```
+
+### Object Size
+
+* Maximum object size → **5 TB**
+* **5 GB se badi file** ke liye **Multipart Upload** recommended hai.
+
+### Replication
+
+S3 data ko automatically multiple **Availability Zones** mein replicate karta hai, jisse data durability/safety mein help milti hai.
+
+---
+
+# 2. Static Website Hosting
+
+S3 ka use **static website hosting** ke liye bhi kiya ja sakta hai.
+
+### Basic Steps
+
+```text id="stweb01"
+Upload Website Files
+        ↓
+Properties
+        ↓
+Static Website Hosting → Enable
+```
+
+### Public Access
+
+Website ko internet se access karne ke liye:
+
+1. **Permissions** mein jaayein.
+2. **Block Public Access** ko off karein.
+3. **Bucket Policy** add karein.
+4. Bucket Policy **JSON format** mein hoti hai.
+
+```text id="stweb02"
+S3 Bucket
+    ↓
+Static Website Hosting
+    ↓
+Public Access
+    ↓
+Internet
+```
+
+---
+
+# 3. S3 Versioning
+
+**Versioning** enable karne par file ke old versions preserve rehte hain.
+
+Example:
+
+```text id="version01"
+file.txt
+   ↓
+Update
+   ↓
+New Version
+
+Old Version → Still Available
+```
+
+Agar file accidentally delete/update ho jaaye, toh previous version recover kar sakte hain.
+
+---
+
+# 4. S3 Replication
+
+S3 mein ek bucket ke data ko automatically doosre bucket mein copy/replicate kiya ja sakta hai.
+
+Use cases:
+
+* Backup
+* Different region mein data serve karna
+
+```text id="replicate01"
+Bucket A
+   │
+   │ Replication
+   ↓
+Bucket B
+```
+
+---
+
+# 5. S3 Storage Classes
+
+Different storage classes ka use **cost optimize** karne ke liye hota hai.
+
+### Standard
+
+Frequently accessed data ke liye.
+
+### Intelligent-Tiering
+
+Data usage ke according storage class automatically shift ho sakti hai.
+
+### Standard-IA
+
+**Infrequently Accessed** data ke liye.
+
+### Glacier / Deep Archive
+
+Long-term backup ya compliance ke liye.
+
+> Ye generally low-cost storage options hain.
+
+---
+
+# 6. Lifecycle Rules
+
+**Lifecycle Rule** ke through data management ko automate kar sakte hain.
+
+Example:
+
+```text id="life01"
+Data
+ ↓
+After some time
+ ↓
+Cheaper Storage Class
+ ↓
+Later
+ ↓
+Delete
+```
+
+Matlab lifecycle rules se automatically:
+
+* Data ko cheaper storage class mein move kar sakte hain.
+* Data ko specified time ke baad delete kar sakte hain.
+
+---
+
+# 7. AWS Snow Family
+
+Jab **TBs/PBs of data** ko internet ke through transfer karna difficult ho, AWS physical devices provide karta hai.
+
+Examples:
+
+* **Snowcone**
+* **Snowball**
+* **Snowmobile**
+
+```text id="snow01"
+Huge Amount of Data
+        ↓
+Internet Transfer Difficult
+        ↓
+AWS Snow Family
+        ↓
+Physical Data Transfer
+```
+
+---
+
+# 8. Storage Gateway
+
+**Storage Gateway** ek **hybrid cloud storage service** hai.
+
+Ye **on-premise servers** ko AWS S3 ke saath connect karta hai.
+
+```text id="gateway01"
+On-Premise Servers
+        ↓
+  Storage Gateway
+        ↓
+       AWS S3
+```
+
+---
+
+# Quick Revision
+
+* **S3** → AWS object storage service.
+* **Bucket** → Data store karne ka container.
+* **Object** → S3 mein stored file.
+* Bucket name → **Globally unique**.
+* Maximum object size → **5 TB**.
+* File > **5 GB** → Multipart Upload recommended.
+* S3 → Data ko multiple AZs mein replicate karta hai.
+* **Static Website Hosting** → S3 se static website host kar sakte hain.
+* Public website → Block Public Access off + Bucket Policy.
+* **Versioning** → Old file versions preserve/recover kar sakte hain.
+* **Replication** → Bucket-to-bucket automatic copy.
+* **Standard** → Frequently accessed data.
+* **Intelligent-Tiering** → Usage ke according automatic shifting.
+* **Standard-IA** → Infrequently accessed data.
+* **Glacier/Deep Archive** → Long-term backup/compliance.
+* **Lifecycle Rule** → Storage class change/delete automate karna.
+* **Snow Family** → Huge data physical transfer.
+* **Storage Gateway** → On-premise storage ko S3 se connect karta hai.
 
 
